@@ -58,6 +58,11 @@ void * prevList(List * list) {
 }
 
 void pushFront(List * list, void * data) {
+  if (list == NULL) return NULL;
+  
+  Node *newNode = createNode(data);
+
+  
 }
 
 void pushBack(List * list, void * data) {
