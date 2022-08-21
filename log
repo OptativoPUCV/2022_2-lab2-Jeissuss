@@ -171,3 +171,26 @@ list.c:95:27: error: ‘List’ {aka ‘struct List’} has no member named ‘c
 cc1: all warnings being treated as errors
 Compilation failed
 7219886
+Sun 21 Aug 2022 06:30:07 PM UTC: 
+ list.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:5:
+list.c: In function ‘pushFront’:
+list.c:66:28: error: ‘return’ with a value, in function returning void [-Werror=return-type]
+   66 |   if (list == NULL) return NULL;
+      |                            ^~~~
+list.c:65:6: note: declared here
+   65 | void pushFront(List * list, void * data) {
+      |      ^~~~~~~~~
+list.c: In function ‘pushCurrent’:
+list.c:90:34: error: expected ‘;’ before ‘:’ token
+   90 |     list->current->next = newNode:
+      |                                  ^
+      |                                  ;
+list.c:95:27: error: ‘List’ {aka ‘struct List’} has no member named ‘currrent’; did you mean ‘current’?
+   95 |     newNode->next = list->currrent->next;
+      |                           ^~~~~~~~
+      |                           current
+cc1: all warnings being treated as errors
+Compilation failed
+7ad846a
