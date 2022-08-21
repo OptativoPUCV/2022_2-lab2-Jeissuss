@@ -20,12 +20,12 @@ struct List {
 typedef List List;
 
 Node * createNode(void * data) {
-    Node * new = (Node *)malloc(sizeof(Node));
-    assert(new != NULL);
-    new->data = data;
-    new->prev = NULL;
-    new->next = NULL;
-    return new;
+  Node * new = (Node *)malloc(sizeof(Node));
+  assert(new != NULL);
+  new->data = data;
+  new->prev = NULL;
+  new->next = NULL;
+  return new;
 }
 
 List * createList() {
@@ -108,11 +108,28 @@ void * popBack(List * list) {
 }
 
 void * popCurrent(List * list) {
-    return NULL;
+  Node *current = list->current;
+  void *dato = current->data;
+
+  if(current == NULL)return NULL;
+  if(list->head == current){
+    current->next->prev = NULL;
+    list->head = current->next;
+  }
+  else if(list->tail ==current){
+    current->prev->next = NULL;
+    list->tail = current->prev;
+  }
+  else{
+    current->prev->next = list->current->next;
+    current->next->prev = list->current->prev;
+  }
+  free(current);
+  return dato;
 }
 
 void cleanList(List * list) {
     while (list->head != NULL) {
-        popFront(list);
+      popFront(list);
     }
 }
